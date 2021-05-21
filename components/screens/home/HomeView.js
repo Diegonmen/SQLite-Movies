@@ -86,61 +86,59 @@ class HomeView extends React.Component {
         
 
           <Text style={styles2.appText}>Peliculas: </Text>
+          <View style={[style.grandparent]}>
+
           {peliculas.map((p) => {
             return (
+              <View key={p.id} style={[style.parent]}>
 
-              <ListItem 
-
-                  key={p.id}
-                  bottomDivider
-                  onPress={() => {
-                    navigatePeliculas(p.id);
-                  }}>
-                <View style={[style.parent]}>
-                <Card style={[style.child]}>
-                    <Card.Title>{p.title}</Card.Title>
+                  
+                  <Card 
+                    bottomDivider
+                    onPress={() => {
+                    navigatePeliculas(p.id)}}
+                    style={style.child}
+                  >
+                    <Card.Title style={{height:52,textAlign: 'center',justifyContent: 'center'}}>{p.title}</Card.Title>
                     <Card.Divider />
-                    <Card.Image style={[style.text]}
+                    <Card.Image style={{aspectRatio: 1}}
                       source={{
                         uri: 'https://image.tmdb.org/t/p/w500'+p.poster,
                       }}></Card.Image>
-                    <Text style={[style.text]}>
-                      {}...
+                    <Text style={{height:60, textAlign: 'center'}}>
+                      {p.overview.substr(0, 60)}...
                     </Text>
-                    <Text style={[style.text]}>
-                      {}
-                    </Text>
-                </Card>
-                </View>
-              </ListItem>
+                  </Card>
+              </View>
             );
           })}
+          </View>
           <Text style={styles2.appText}>Series: </Text>
+          <View style={[style.grandparent]}>
+
           {series.map((s) => {
             return (
-                <ListItem style={[style.parent]}
-                  key={s.id}
-                  bottomDivider
-                  onPress={() => {
-                    navigatePeliculas(s.id);
-                  }}>
-                <Card style={[style.child]}>
-                    <Card.Title style={[style.text]} >{s.name}</Card.Title>
+              <View key={s.id} style={[style.parent]}>
+                  <Card 
+                    bottomDivider
+                    onPress={() => {
+                    navigatePeliculas(s.id)}}
+                    style={style.child}
+                  >
+                    <Card.Title style={{height:52,textAlign: 'center',justifyContent: 'center'}}>{s.name}</Card.Title>
                     <Card.Divider />
-                    <Card.Image
+                    <Card.Image style={{aspectRatio: 1}}
                       source={{
                         uri: 'https://image.tmdb.org/t/p/w500'+s.poster,
                       }}></Card.Image>
-                    <Text style={[style.text]}>
-                      {}...
+                    <Text style={{height:60, textAlign: 'center'}}>
+                      {s.overview.substr(0, 60)}...
                     </Text>
-                    <Text style={[style.text]}>
-                      {}
-                    </Text>
-                </Card>
-              </ListItem>
+                  </Card>
+              </View>
             );
           })}
+          </View>
       </ScrollView>
     );
   }
@@ -174,16 +172,21 @@ const styles = StyleSheet.create({
   },
 });
 var style = StyleSheet.create({
+  grandparent: {
+    flex: 1,
+    margin:-20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start'
+},
   parent: {
-      width: '100%', 
-      flexDirection: 'row', 
-      flexWrap: 'wrap',
-      flex:1
+    width: '50%',
+
   },
   child: {
-      width: '100%',  
-      alignSelf: 'center',
-      aspectRatio: 1
+    width: '100%',
+    height: 400,
+    position:'absolute',
   },
   text: {
     width: '100%', 
@@ -217,6 +220,7 @@ const styles2 = StyleSheet.create({
     color: '#000',
     fontWeight: 'bold',
     alignSelf: 'center',
+    margin:50
   },
   title: {
     textAlign: 'center',
