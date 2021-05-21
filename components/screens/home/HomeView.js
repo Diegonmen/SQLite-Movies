@@ -14,9 +14,14 @@ class HomeView extends React.Component {
 
   render() {
     var {
-      navigateB,
+      navigateMovies,
+      navigateGenres,
+      navigateCountries,
+      navigateScore,
+      navigateReleaseDate,
       loading,
-      cantidad
+      peliculas,
+      series
     } = this.props;
     if (loading) {
       return (
@@ -29,9 +34,38 @@ class HomeView extends React.Component {
       <ScrollView>
         <View>
           <TouchableOpacity
-            onPress={navigateB}>
+            onPress={navigateMovies}>
             <Text>
-              Peliculas {cantidad}
+              Peliculas {peliculas.length}
+              Series {series.length}
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={navigateCountries}>
+            <Text>
+              Filtrado por país de origen
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={navigateGenres}>
+            <Text>
+              Filtrado por géneros
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={navigateScore}>
+            <Text>
+              Filtrado por puntuación
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={navigateReleaseDate}>
+            <Text>
+              Filtrado por fecha de estreno
             </Text>
           </TouchableOpacity>
 {/* 
