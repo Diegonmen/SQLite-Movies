@@ -8,8 +8,9 @@ const HomeScreen = (props) => {
   var db = openDatabase({ name: 'database.db', createFromLocation: 1});
 
   var [loading, setLoading] = useState(true);
-  var [peliculas, setPeliculas] = useState({});
-  var [series, setSeries] = useState({});
+  var [peliculas, setPeliculas] = useState([]);
+  var [series, setSeries] = useState([]);
+  var iter = 0;
   useEffect(() => {
     db.transaction(function (txn) {
       txn.executeSql(
@@ -17,17 +18,35 @@ const HomeScreen = (props) => {
         [],
         function (tx, res) {
           console.log('peliculas:', res.rows.length);
-          setPeliculas(res.rows)
-          setLoading(false)
+          var pList = [];
+          console.log(res.rows.length);
+          for (let i = 0; i < res.rows.length; ++i){
+            pList.push(res.rows.item(i))
+          }
+          setPeliculas(pList)
+          if (iter > 0){
+            setLoading(false)
+          } else{
+            iter= iter+1
+          }
         },
       );
       txn.executeSql(
         "SELECT * FROM series",
         [],
         function (tx, res) {
-          console.log('series:', res.rows.length);
-          setSeries(res.rows)
-          setLoading(false)
+          console.log('series:', res.rows.item(1).poster);
+          var sList = [];
+          console.log(res.rows.length);
+          for (let i = 0; i < res.rows.length; ++i){
+            sList.push(res.rows.item(i))
+          }
+          setSeries(sList)
+          if (iter > 0){
+            setLoading(false)
+          } else{
+            iter= iter+1
+          }
         },
       );
     });
