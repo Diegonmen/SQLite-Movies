@@ -88,26 +88,30 @@ class HomeView extends React.Component {
           <Text style={styles2.appText}>Peliculas: </Text>
           {peliculas.map((p) => {
             return (
-                <ListItem style={[style.parent]}
+
+              <ListItem 
+
                   key={p.id}
                   bottomDivider
                   onPress={() => {
                     navigatePeliculas(p.id);
                   }}>
+                <View style={[style.parent]}>
                 <Card style={[style.child]}>
                     <Card.Title>{p.title}</Card.Title>
                     <Card.Divider />
-                    <Card.Image
+                    <Card.Image style={[style.text]}
                       source={{
                         uri: 'https://image.tmdb.org/t/p/w500'+p.poster,
                       }}></Card.Image>
                     <Text style={[style.text]}>
                       {}...
                     </Text>
-                    <Text>
+                    <Text style={[style.text]}>
                       {}
                     </Text>
                 </Card>
+                </View>
               </ListItem>
             );
           })}
@@ -177,12 +181,12 @@ var style = StyleSheet.create({
       flex:1
   },
   child: {
-      width: '49%',  
+      width: '100%',  
       alignSelf: 'center',
       aspectRatio: 1
   },
   text: {
-    width: '1%', 
+    width: '100%', 
     alignSelf: 'center',
 }
 })
