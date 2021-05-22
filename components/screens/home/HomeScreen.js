@@ -51,11 +51,11 @@ const HomeScreen = (props) => {
       );
     });
   }, []);
-  function navigateMovies() {
-    props.navigation.navigate('Movies');
+  function navigatePeliculas(id) {
+    props.navigation.navigate('Pelicula', id);
   }
-  function navigateSeries() {
-    props.navigation.navigate('Series');
+  function navigateSeries(id) {
+    props.navigation.navigate('Serie', id);
   }
   function navigateGenres() {
     props.navigation.navigate('Genres');
@@ -71,7 +71,7 @@ const HomeScreen = (props) => {
   }
   return (
     <HomeView
-      navigateMovies={navigateMovies}
+      navigatePeliculas={navigatePeliculas}
       navigateSeries={navigateSeries}
       navigateGenres={navigateGenres}
       navigateCountries={navigateCountries}

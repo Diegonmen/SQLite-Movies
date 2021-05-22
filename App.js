@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from './components/screens/home/HomeScreen';
 import MoviesScreen from './components/screens/movies/MoviesScreen';
+import SeriesScreen from './components/screens/series/SeriesScreen';
 import GenresScreen from './components/screens/genres/GenresScreen';
 import CountriesScreen from './components/screens/countries/CountriesScreen';
 import ScoreScreen from './components/screens/score/ScoreScreen';
@@ -20,11 +21,6 @@ export default function App() {
           name="HomeScreen"
           component={HomeScreen}
           options={{title: 'Inicio'}}
-        />
-        <Stack.Screen
-          name="Movies"
-          component={MoviesScreen}
-          options={{title: 'Películas'}}
         />
         <Stack.Screen
           name="Genres"
@@ -45,6 +41,16 @@ export default function App() {
           name="ReleaseDate"
           component={ReleaseDateScreen}
           options={{title: 'Filtrar por fecha de estreno'}}
+        />
+        <Stack.Screen
+          name="Pelicula"
+          component={MoviesScreen}
+          options={{title: 'Ver pelicula'}}
+        />
+        <Stack.Screen
+          name="Serie"
+          component={SeriesScreen}
+          options={{title: 'Ver serie'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

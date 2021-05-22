@@ -22,6 +22,7 @@ class HomeView extends React.Component {
       navigateScore,
       navigateReleaseDate,
       navigatePeliculas,
+      navigateSeries,
       loading,
       peliculas,
       series
@@ -36,15 +37,6 @@ class HomeView extends React.Component {
     return (
       <ScrollView>
         <View>
-          <TouchableOpacity
-            onPress={navigateMovies}
-            style={styles2.button}
-            >
-            <Text style={styles2.appButtonText}>
-              Peliculas {peliculas.length}
-              Series {series.length}
-            </Text>
-          </TouchableOpacity>
 
           <TouchableOpacity
             onPress={navigateCountries}
@@ -92,23 +84,22 @@ class HomeView extends React.Component {
             return (
               <View key={p.id} style={[style.parent]}>
 
-                  
-                  <Card 
-                    bottomDivider
-                    onPress={() => {
-                    navigatePeliculas(p.id)}}
-                    style={style.child}
-                  >
-                    <Card.Title style={{height:52,textAlign: 'center',justifyContent: 'center'}}>{p.title}</Card.Title>
-                    <Card.Divider />
-                    <Card.Image style={{aspectRatio: 1}}
-                      source={{
-                        uri: 'https://image.tmdb.org/t/p/w500'+p.poster,
-                      }}></Card.Image>
-                    <Text style={{height:60, textAlign: 'center'}}>
-                      {p.overview.substr(0, 60)}...
-                    </Text>
-                  </Card>
+                  <TouchableOpacity onPress={() => {navigatePeliculas(p.id)}}>
+                    <Card 
+                      bottomDivider
+                      style={style.child}
+                    >
+                      <Card.Title style={{height:52,textAlign: 'center',justifyContent: 'center'}}>{p.title}</Card.Title>
+                      <Card.Divider />
+                      <Card.Image style={{aspectRatio: 1}}
+                        source={{
+                          uri: 'https://image.tmdb.org/t/p/w500'+p.poster,
+                        }}></Card.Image>
+                      <Text style={{height:60, textAlign: 'center'}}>
+                        {p.overview.substr(0, 60)}...
+                      </Text>
+                    </Card>
+                  </TouchableOpacity>
               </View>
             );
           })}
@@ -119,22 +110,22 @@ class HomeView extends React.Component {
           {series.map((s) => {
             return (
               <View key={s.id} style={[style.parent]}>
-                  <Card 
-                    bottomDivider
-                    onPress={() => {
-                    navigatePeliculas(s.id)}}
-                    style={style.child}
-                  >
-                    <Card.Title style={{height:52,textAlign: 'center',justifyContent: 'center'}}>{s.name}</Card.Title>
-                    <Card.Divider />
-                    <Card.Image style={{aspectRatio: 1}}
-                      source={{
-                        uri: 'https://image.tmdb.org/t/p/w500'+s.poster,
-                      }}></Card.Image>
-                    <Text style={{height:60, textAlign: 'center'}}>
-                      {s.overview.substr(0, 60)}...
-                    </Text>
-                  </Card>
+                  <TouchableOpacity onPress={() => {navigateSeries(s.id)}}>
+                    <Card 
+                      bottomDivider
+                      style={style.child}
+                    >
+                      <Card.Title style={{height:52,textAlign: 'center',justifyContent: 'center'}}>{s.name}</Card.Title>
+                      <Card.Divider />
+                      <Card.Image style={{aspectRatio: 1}}
+                        source={{
+                          uri: 'https://image.tmdb.org/t/p/w500'+s.poster,
+                        }}></Card.Image>
+                      <Text style={{height:60, textAlign: 'center'}}>
+                        {s.overview.substr(0, 60)}...
+                      </Text>
+                    </Card>
+                  </TouchableOpacity>
               </View>
             );
           })}
