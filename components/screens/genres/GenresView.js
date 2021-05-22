@@ -17,6 +17,7 @@ class HomeView extends React.Component {
     var {
       loading,
       items,
+      genres,
       navigateItems
     } = this.props;
     if (loading) {
@@ -29,32 +30,47 @@ class HomeView extends React.Component {
     return (
       <ScrollView>
         <Text style={style.appText}>Peliculas y series: </Text>
-          <View style={[style.grandparent]}>
+          
+          {genres.map((g) => {
+            
+          return (
+            <View key={g}>
+            <Text style={style.appText}>{g} </Text>
 
-          {items.map((p) => {
-            return (
-              <View key={p.id} style={[style.parent]}>
+            <View style={[style.grandparent]}>
+          
+            
+            {items.map((p) => {
+              if(p.genres.split(',').includes(g)){
+              return (
+                <View key={p.id} style={[style.parent]}>
 
-                  <TouchableOpacity onPress={() => {navigateItems(p)}}>
-                    <Card 
-                      bottomDivider
-                      style={style.child}
-                    >
-                      <Card.Title style={{height:52,textAlign: 'center',justifyContent: 'center'}}>{p.title}</Card.Title>
-                      <Card.Divider />
-                      <Card.Image style={{aspectRatio: 1}}
-                        source={{
-                          uri: 'https://image.tmdb.org/t/p/w500'+p.poster,
-                        }}></Card.Image>
-                      <Text style={{height:60, textAlign: 'center'}}>
-                        {p.overview.substr(0, 60)}...
-                      </Text>
-                    </Card>
-                  </TouchableOpacity>
-              </View>
-            );
-          })}
-          </View>
+                    <TouchableOpacity onPress={() => {navigateItems(p)}}>
+                      <Card 
+                        bottomDivider
+                        style={style.child}
+                      >
+                        <Card.Title style={{height:52,textAlign: 'center',justifyContent: 'center'}}>{p.title}</Card.Title>
+                        <Card.Divider />
+                        <Card.Image style={{aspectRatio: 1}}
+                          source={{
+                            uri: 'https://image.tmdb.org/t/p/w500'+p.poster,
+                          }}></Card.Image>
+                        <Text style={{height:60, textAlign: 'center'}}>
+                          {p.overview.substr(0, 60)}...
+                        </Text>
+                      </Card>
+                    </TouchableOpacity>
+                </View>
+              );
+          }})
+        }
+        </View>
+        </View>
+        )
+        })
+        }
+
       </ScrollView>
     );
   }
