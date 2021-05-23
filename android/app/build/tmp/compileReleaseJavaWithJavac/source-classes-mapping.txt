@@ -1,0 +1,9 @@
+com/sqlite/MainApplication.java
+ com.sqlite.MainApplication
+ com.sqlite.MainApplication$1
+com/sqlite/MainActivity.java
+ com.sqlite.MainActivity
+com/sqlite/BuildConfig.java
+ com.sqlite.BuildConfig
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
